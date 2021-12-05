@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
+import br.com.systemsgs.crudservice.dto.ProdutoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,5 +37,9 @@ public class ModelProduto implements Serializable{
 	
 	@Column(nullable = false)
 	private Double preco;
+	
+	public static ModelProduto converteEntidade(ProdutoDTO produtoDTO) {
+		return new ModelMapper().map(produtoDTO, ModelProduto.class);
+	}
 
 }
