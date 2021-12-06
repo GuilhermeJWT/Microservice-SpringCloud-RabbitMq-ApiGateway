@@ -9,6 +9,7 @@ public class ModelProdutoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	@NotNull(message = "Id deve ser Informado!!!")
 	private Long id;
 
 	@NotBlank(message = "Nome deve ser Informado!!!")
