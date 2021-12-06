@@ -3,16 +3,12 @@ package br.com.systemsgs.crudservice.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.systemsgs.crudservice.dto.ProdutoDTO;
+import br.com.systemsgs.crudservice.repository.ProdutoRepository;
 
 @Service
 public class ProdutoService {
 	
 	@Autowired
-	private ProdutoService produtoService;
+	private ProdutoRepository produtoRepository;
 	
-	public ProdutoDTO create(ProdutoDTO produtoVO) {
-		return null;
-	}
-
 }
