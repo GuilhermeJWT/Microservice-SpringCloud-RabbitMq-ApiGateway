@@ -2,16 +2,22 @@ package br.com.systemsgs.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class ModelProdutoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
 
+	@NotBlank(message = "Nome deve ser Informado!!!")
 	private String nome;
-	
+
+	@NotNull(message = "Estoque deve ser Informado!!!")
 	private Integer estoque;
 	
+	@NotNull(message = "Preco deve ser Informado!!!")
 	private Double preco;
 	
 	public Long getId() {
