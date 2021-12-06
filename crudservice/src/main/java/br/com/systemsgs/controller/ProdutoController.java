@@ -25,27 +25,27 @@ public class ProdutoController {
 	@Autowired
 	private ProdutoService produtoService;
 	
-	@GetMapping
+	@GetMapping(value = "/listar")
 	public List<ModelProdutoDTO> findAll() {
 		return produtoService.findAll();
 	}	
 	
-	@GetMapping("/{id}")
+	@GetMapping(value = "/pesquisar/{id}")
 	public ModelProdutoDTO findById(@PathVariable("id") Long id) {
 		return produtoService.findById(id);
 	}	
 	
-	@PostMapping
+	@PostMapping(value = "/salvar")
 	public ModelProdutoDTO create(@RequestBody @Valid ModelProdutoDTO modelProdutoDTO) {
 		return produtoService.salvar(modelProdutoDTO);
 	}
 	
-	@PutMapping
+	@PutMapping(value = "/editar")
 	public ModelProdutoDTO update(@RequestBody @Valid ModelProdutoDTO modelProdutoDTO) {
 		return produtoService.update(modelProdutoDTO);
 	}	
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping(value = "/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 		produtoService.delete(id);
 		return ResponseEntity.ok().build();
