@@ -1,23 +1,23 @@
-package br.com.systemsgs.crudservice.dto;
+package br.com.systemsgs.dto;
 
 import java.io.Serializable;
 
-public class ProdutoDTO implements Serializable{
+public class ModelProdutoDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
-	private Long id;
 	
+	private Long id;
+
 	private String nome;
 	
 	private Integer estoque;
 	
 	private Double preco;
-
+	
 	public Long getId() {
 		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}

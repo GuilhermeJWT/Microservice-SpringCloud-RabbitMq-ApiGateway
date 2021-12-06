@@ -1,4 +1,4 @@
-package br.com.systemsgs.crudservice.config;
+package br.com.systemsgs.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,6 @@ public class DozerConverter {
 		}
 
 		return destinoEntidade;
-	} 
+	}
 
 }

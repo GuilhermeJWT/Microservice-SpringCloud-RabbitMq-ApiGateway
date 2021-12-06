@@ -1,4 +1,4 @@
-package br.com.systemsgs.crudservice.model;
+package br.com.systemsgs.model;
 
 import java.io.Serializable;
 
