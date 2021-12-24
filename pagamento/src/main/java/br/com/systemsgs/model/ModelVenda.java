@@ -1,6 +1,8 @@
 package br.com.systemsgs.model;
 
+import br.com.systemsgs.vo.VendaVO;
 import lombok.*;
+import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -31,5 +33,9 @@ public class ModelVenda implements Serializable {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "venda", cascade = CascadeType.REFRESH )
     private List<ModelProdutoVenda> produtos;
+
+    public static ModelVenda converteEntidade(VendaVO vendaVO){
+        return new ModelMapper().map(vendaVO, ModelVenda.class);
+    }
 
 }

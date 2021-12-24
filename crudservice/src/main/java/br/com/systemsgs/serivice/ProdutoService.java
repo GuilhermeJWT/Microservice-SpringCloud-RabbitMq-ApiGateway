@@ -34,9 +34,9 @@ public class ProdutoService {
     }
 
     public ProdutoVO alterar(ProdutoVO produtoVO){
-        final Optional<ModelProduto> optionalPorduto = produtoRepository.findById(produtoVO.getId());
+        final Optional<ModelProduto> optionalProduto = produtoRepository.findById(produtoVO.getId());
 
-        if (!optionalPorduto.isPresent()){
+        if (!optionalProduto.isPresent()){
             new ResourceNotFoundException("Produto não Encontrado!");
         }
 
