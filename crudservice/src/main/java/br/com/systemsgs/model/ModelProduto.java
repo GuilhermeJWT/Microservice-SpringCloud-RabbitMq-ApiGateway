@@ -1,8 +1,10 @@
 package br.com.systemsgs.model;
 
+import br.com.systemsgs.vo.ProdutoVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.modelmapper.ModelMapper;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,5 +29,9 @@ public class ModelProduto implements Serializable {
 
     @Column(name = "preco", nullable = false)
     private BigDecimal preco;
+
+    public static ModelProduto coverteEntidade(ProdutoVO produtoVO){
+        return new ModelMapper().map(produtoVO, ModelProduto.class);
+    }
 
 }
