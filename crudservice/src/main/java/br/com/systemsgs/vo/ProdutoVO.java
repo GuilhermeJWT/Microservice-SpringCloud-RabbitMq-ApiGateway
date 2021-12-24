@@ -3,10 +3,9 @@ package br.com.systemsgs.vo;
 import br.com.systemsgs.model.ModelProduto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
@@ -15,9 +14,12 @@ import java.math.BigDecimal;
 @JsonPropertyOrder({"id", "nome", "estoque", "preco"})
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode(callSuper = false)
 @Entity
-public class ProdutoVO implements Serializable {
+public class ProdutoVO extends RepresentationModel<ProdutoVO> implements Serializable {
 
     @JsonProperty("id")
     private Long id;
