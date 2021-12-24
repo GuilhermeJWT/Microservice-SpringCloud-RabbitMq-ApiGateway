@@ -28,12 +28,28 @@ public class ProdutoController {
         this.assembler = assembler;
     }
 
+    @PostMapping(value = "/salvar", produces = { "application/json", "application/xml", "application/x-yaml" }, consumes = { "application/json", "application/xml", "application/x-yaml" })
+    public ProdutoVO salvar(@RequestBody ProdutoVO produtoVO){
+        ProdutoVO produtoSalvo = produtoService.create(produtoVO);
+        produtoVO.add(linkTo(methodOn(ProdutoController.class).findById(produtoSalvo.getId())).withSelfRel());
+
+        return produtoSalvo;
+    }
+
+    @PutMapping(value = "/alterar", produces = { "application/json", "application/xml", "application/x-yaml" }, consumes = { "application/json", "application/xml", "application/x-yaml" })
+    public ProdutoVO alterar(@RequestBody ProdutoVO produtoVO){
+        ProdutoVO produtoSalvo = produtoService.alterar(produtoVO);
+        produtoVO.add(linkTo(methodOn(ProdutoController.class).findById(produtoSalvo.getId())).withSelfRel());
+
+        return produtoSalvo;
+    }
+
     @GetMapping(value = "/listas", produces = { "application/json", "application/xml", "application/x-yaml" })
     public ResponseEntity<ProdutoVO> findAll(@RequestParam(value = "page", defaultValue = "0") int limit,
                                              @RequestParam(value = "limit", defaultValue = "12") int page,
                                              @RequestParam(value = "direction", defaultValue = "0") String direction){
 
-    var sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
+        var sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
         Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "nome"));
         Page<ProdutoVO> produtos = produtoService.findAll(pageable);
 
@@ -49,6 +65,13 @@ public class ProdutoController {
         produtoVO.add(linkTo(methodOn(ProdutoController.class).findById(id)).withSelfRel());
 
         return produtoVO;
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        produtoService.delete(id);
+
+        return ResponseEntity.ok().build();
     }
 
 }
