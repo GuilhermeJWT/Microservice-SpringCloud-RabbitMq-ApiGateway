@@ -9,7 +9,7 @@ import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
 
-@JsonPropertyOrder({"id", "idProduto", "qauntidade"})
+@JsonPropertyOrder({"id", "idProduto", "quantidade"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter

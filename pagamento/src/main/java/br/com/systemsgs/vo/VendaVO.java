@@ -25,7 +25,7 @@ public class VendaVO extends RepresentationModel<VendaVO> implements Serializabl
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("id")
+    @JsonProperty("data")
     private Date data;
 
     @JsonProperty("produtos")
