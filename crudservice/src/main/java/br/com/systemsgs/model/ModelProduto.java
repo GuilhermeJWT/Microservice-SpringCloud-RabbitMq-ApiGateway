@@ -1,9 +1,7 @@
 package br.com.systemsgs.model;
 
 import br.com.systemsgs.vo.ProdutoVO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.modelmapper.ModelMapper;
 
 import javax.persistence.*;
@@ -12,7 +10,9 @@ import java.math.BigDecimal;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "produto")
 public class ModelProduto implements Serializable {

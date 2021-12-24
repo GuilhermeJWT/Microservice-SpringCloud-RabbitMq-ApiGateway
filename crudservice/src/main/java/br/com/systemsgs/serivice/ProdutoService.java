@@ -24,7 +24,7 @@ public class ProdutoService {
     @Transactional
     public ProdutoVO create(ProdutoVO produtoVO){
         ProdutoVO produtoRetorno = ProdutoVO.converteEntidade(produtoRepository.save(ModelProduto.coverteEntidade(produtoVO)));
-        return null;
+        return produtoRetorno;
     }
 
     public ProdutoVO findById(Long id){
@@ -44,7 +44,7 @@ public class ProdutoService {
     }
 
     public void delete(Long id){
-        var produto = produtoRepository.findById(id).orElseThrow(() -> new ResourceAccessException("Produto não Encontrado!"));
+        var produto = produtoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Produto não Encontrado!"));
         produtoRepository.delete(produto);
     }
 

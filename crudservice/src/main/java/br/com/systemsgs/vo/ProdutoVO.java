@@ -7,7 +7,6 @@ import lombok.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.RepresentationModel;
 
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -18,7 +17,6 @@ import java.math.BigDecimal;
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper = false)
-@Entity
 public class ProdutoVO extends RepresentationModel<ProdutoVO> implements Serializable {
 
     @JsonProperty("id")

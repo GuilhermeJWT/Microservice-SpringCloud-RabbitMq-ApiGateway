@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
@@ -31,7 +32,7 @@ public class ProdutoController {
     @PostMapping(value = "/salvar", produces = { "application/json", "application/xml", "application/x-yaml" }, consumes = { "application/json", "application/xml", "application/x-yaml" })
     public ProdutoVO salvar(@RequestBody ProdutoVO produtoVO){
         ProdutoVO produtoSalvo = produtoService.create(produtoVO);
-        produtoVO.add(linkTo(methodOn(ProdutoController.class).findById(produtoSalvo.getId())).withSelfRel());
+        produtoSalvo.add(linkTo(methodOn(ProdutoController.class).findById(produtoSalvo.getId())).withSelfRel());
 
         return produtoSalvo;
     }
@@ -39,24 +40,27 @@ public class ProdutoController {
     @PutMapping(value = "/alterar", produces = { "application/json", "application/xml", "application/x-yaml" }, consumes = { "application/json", "application/xml", "application/x-yaml" })
     public ProdutoVO alterar(@RequestBody ProdutoVO produtoVO){
         ProdutoVO produtoSalvo = produtoService.alterar(produtoVO);
-        produtoVO.add(linkTo(methodOn(ProdutoController.class).findById(produtoSalvo.getId())).withSelfRel());
+        produtoSalvo.add(linkTo(methodOn(ProdutoController.class).findById(produtoVO.getId())).withSelfRel());
 
         return produtoSalvo;
     }
 
-    @GetMapping(value = "/listas", produces = { "application/json", "application/xml", "application/x-yaml" })
-    public ResponseEntity<ProdutoVO> findAll(@RequestParam(value = "page", defaultValue = "0") int limit,
-                                             @RequestParam(value = "limit", defaultValue = "12") int page,
-                                             @RequestParam(value = "direction", defaultValue = "0") String direction){
+    @GetMapping(value = "/listar", produces = {"application/json","application/xml","application/x-yaml"})
+    public ResponseEntity<?> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
+                                     @RequestParam(value = "limit", defaultValue = "12") int limit,
+                                     @RequestParam(value = "direction", defaultValue = "asc") String direction) {
 
-        var sortDirection = "desc".equalsIgnoreCase(direction) ? Sort.Direction.DESC : Sort.Direction.ASC;
-        Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "nome"));
+        var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
+
+        Pageable pageable = PageRequest.of(page,limit, Sort.by(sortDirection,"nome"));
+
         Page<ProdutoVO> produtos = produtoService.findAll(pageable);
+        produtos.stream()
+                .forEach(p -> p.add(linkTo(methodOn(ProdutoController.class).findById(p.getId())).withSelfRel()));
 
-        produtos.stream().forEach(p -> p.add(linkTo(methodOn(ProdutoController.class).findById(p.getId())).withSelfRel()));
         PagedModel<EntityModel<ProdutoVO>> pagedModel = assembler.toModel(produtos);
 
-        return new ResponseEntity(pagedModel, HttpStatus.OK);
+        return new ResponseEntity<>(pagedModel,HttpStatus.OK);
     }
 
     @GetMapping(value = "/pesquisa/{id}", produces = { "application/json", "application/xml", "application/x-yaml" })
