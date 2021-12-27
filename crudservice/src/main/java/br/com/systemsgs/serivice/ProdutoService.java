@@ -29,7 +29,7 @@ public class ProdutoService {
     @Transactional
     public ProdutoVO create(ProdutoVO produtoVO){
         ProdutoVO produtoRetorno = ProdutoVO.converteEntidade(produtoRepository.save(ModelProduto.coverteEntidade(produtoVO)));
-        produtoSendMessage.sendMessage(produtoVO);
+        produtoSendMessage.sendMessage(produtoRetorno);
         return produtoRetorno;
     }
 

@@ -4,10 +4,7 @@ import br.com.systemsgs.vo.ProdutoVO;
 import lombok.*;
 import org.modelmapper.ModelMapper;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @NoArgsConstructor
