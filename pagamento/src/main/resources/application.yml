@@ -26,3 +26,7 @@ spring:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
+crud:
+  rabbitmq:
+    exchange: crud.exchange
+    queue: crud.produto.queue
