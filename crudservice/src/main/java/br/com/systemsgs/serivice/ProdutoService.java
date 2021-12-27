@@ -1,9 +1,11 @@
 package br.com.systemsgs.serivice;
 
+import br.com.systemsgs.config.ProdutoSendMessage;
 import br.com.systemsgs.exception.ResourceNotFoundException;
 import br.com.systemsgs.model.ModelProduto;
 import br.com.systemsgs.repository.ProdutoRepository;
 import br.com.systemsgs.vo.ProdutoVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,14 +18,18 @@ import java.util.Optional;
 public class ProdutoService {
 
     private final ProdutoRepository produtoRepository;
+    private final ProdutoSendMessage produtoSendMessage;
 
-    public ProdutoService(ProdutoRepository produtoRepository) {
+    @Autowired
+    public ProdutoService(ProdutoRepository produtoRepository, ProdutoSendMessage produtoSendMessage) {
         this.produtoRepository = produtoRepository;
+        this.produtoSendMessage = produtoSendMessage;
     }
 
     @Transactional
     public ProdutoVO create(ProdutoVO produtoVO){
         ProdutoVO produtoRetorno = ProdutoVO.converteEntidade(produtoRepository.save(ModelProduto.coverteEntidade(produtoVO)));
+        produtoSendMessage.sendMessage(produtoVO);
         return produtoRetorno;
     }
 

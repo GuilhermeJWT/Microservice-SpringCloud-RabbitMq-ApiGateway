@@ -12,7 +12,7 @@ public class ProdutoSendMessage {
     @Value("${crud.rabbitmq.exchange}")
     String exchange;
 
-    @Value("${crud.produto.routingKey}")
+    @Value("${crud.rabbitmq.routingKey}")
     String routingKey;
 
     public final RabbitTemplate rabbitTemplate;
