@@ -18,6 +18,10 @@ import java.util.Date;
 import java.util.List;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class JWTTokenProvider {
@@ -68,6 +72,18 @@ public class JWTTokenProvider {
         }
 
         return null;
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+            if(claims.getBody().getExpiration().before(new Date())) {
+                return false;
+            }
+            return true;
+        } catch(JwtException | IllegalArgumentException e) {
+            return false;
+        }
     }
 
 }
