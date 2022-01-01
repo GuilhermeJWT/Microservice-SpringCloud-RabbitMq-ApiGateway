@@ -35,3 +35,7 @@ crud:
   rabbitmq:
     exchange: crud.exchange
     routingKey: crud.produto.routingKey
+security:
+  jwt:
+    token:
+      secret-key: chave_microservices
