@@ -1,18 +1,16 @@
 package br.com.systemsgs;
 
-import java.util.Arrays;
-
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import br.com.systemsgs.model.ModelPermission;
 import br.com.systemsgs.model.ModelUser;
 import br.com.systemsgs.repository.PermissionRepository;
 import br.com.systemsgs.repository.UserRepository;
-
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 public class AuthApplication {
@@ -30,7 +28,8 @@ public class AuthApplication {
 
 	}
 
-	private void initUsers(UserRepository userRepository, PermissionRepository permissionRepository, BCryptPasswordEncoder passwordEncoder) {
+	private void initUsers(UserRepository userRepository, PermissionRepository permissionRepository,
+						   BCryptPasswordEncoder passwordEncoder) {
 
 		ModelPermission permission = null;
 		ModelPermission findPermission = permissionRepository.findByDescription("Admin");
@@ -56,4 +55,5 @@ public class AuthApplication {
 			userRepository.save(admin);
 		}
 	}
+
 }

@@ -20,8 +20,6 @@ import java.util.List;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class JWTTokenProvider {
@@ -32,12 +30,9 @@ public class JWTTokenProvider {
     @Value("${security.jwt.token.expire-length}")
     private Long expire;
 
-    @Qualifier("UserService")
+    @Qualifier("userService")
     @Autowired
     private UserDetailsService userDetailsService;
-
-    public JWTTokenProvider() {
-    }
 
     @PostConstruct
     protected void init(){

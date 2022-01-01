@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@EqualsAndHashCode
 @Entity
 @Table(name = "permission")
 public class ModelPermission implements GrantedAuthority, Serializable {

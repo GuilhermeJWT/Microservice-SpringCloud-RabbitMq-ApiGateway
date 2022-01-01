@@ -17,7 +17,7 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class ModelUser implements UserDetails,Serializable {
 
     @Id
@@ -42,8 +42,10 @@ public class ModelUser implements UserDetails,Serializable {
     @Column(name = "enabled")
     private Boolean enabled;
 
+
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_permission", joinColumns = { @JoinColumn(name = "id_user")}, inverseJoinColumns = { @JoinColumn(name = "id_permissions")})
+    @JoinTable(name = "user_permission" ,  joinColumns = { @JoinColumn(name="id_user")},
+            inverseJoinColumns = { @JoinColumn(name="id_permissions")})
     private List<ModelPermission> permissions;
 
     public List<String> getRoles(){
