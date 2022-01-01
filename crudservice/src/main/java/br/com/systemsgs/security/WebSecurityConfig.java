@@ -1,5 +1,4 @@
 package br.com.systemsgs.security;
-
 import br.com.systemsgs.jwt.JWTTokenConfigure;
 import br.com.systemsgs.jwt.JWTTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.
-             httpBasic().disable()
-             .csrf().disable()
-             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                httpBasic().disable()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-             .authorizeRequests()
-             .antMatchers("/api/v1/login").permitAll()
-             .anyRequest().authenticated()
+                .authorizeRequests()
+                .antMatchers("/api/v1/login").permitAll()
+                .anyRequest().authenticated()
                 .and()
-             .apply(new JWTTokenConfigure(jwtTokenProvider));
+                .apply(new JWTTokenConfigure(jwtTokenProvider));
     }
 
     @Bean
@@ -48,3 +47,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 }
+
