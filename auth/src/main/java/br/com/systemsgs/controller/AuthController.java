@@ -21,7 +21,7 @@ import java.util.Map;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping(value = "/api/v1/login")
+@RequestMapping(value = "/v1/login")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;

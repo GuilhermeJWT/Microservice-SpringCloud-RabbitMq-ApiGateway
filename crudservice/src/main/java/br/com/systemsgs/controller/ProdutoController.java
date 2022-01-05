@@ -18,7 +18,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping(value = "/api/v1/produtos")
+@RequestMapping(value = "/v1/produtos")
 public class ProdutoController {
 
     private final ProdutoService produtoService;
