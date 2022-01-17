@@ -1,5 +1,5 @@
 # Arquitetura da nossa Aplicação:
-<img src="https://user-images.githubusercontent.com/63434009/147356993-c5935cc0-3548-4409-97f0-fd54d98e493c.PNG"/>
+<img src="https://user-images.githubusercontent.com/63434009/149844277-aa8c10ed-d136-415d-9a1d-a9e942bf9127.png"/>
 </br>
 
 # Apontando para a Fila e RoutingKey:
